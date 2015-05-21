@@ -1,0 +1,575 @@
+/*normal links*/
+
+a:visited {
+	color : #990000;
+	text-decoration : underline;
+}
+
+a:active {color : #990000;
+	text-decoration : none;}
+
+
+a:link {
+	color : #000099;
+	cursor : pointer;
+	text-decoration : underline;
+}
+
+a:hover {
+	color : #990000;
+	text-decoration : none;
+}
+
+/*agency links*/
+
+a.agencynav, .agencynav, a.agencynav:link, a.agencynav:visited {
+	background : transparent;
+	color : #999999;
+	font : 10px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	text-decoration : underline;
+
+}
+a.agencynav:hover {
+	color : #999999;
+	text-decoration : underline;
+}
+
+/*footer links*/
+
+a.footernav, .footernav, a.footernav:visited {
+   background : transparent;
+	color : #000000;
+	font : 10px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	text-decoration : underline;
+}
+
+a.footernav:hover {
+	color : #000000;
+	text-decoration : underline;
+}
+
+/*leftnav bar links*/
+
+a.leftnav, .leftnav, a.leftnav:visited {
+	color : #333366;
+	font : 12px "Trebuchet MS", Verdana, Arial, sans-serif; 
+	line-height : 14px;
+	padding-bottom : 0px;
+	padding-left : 0px;
+	padding-right : 0px;
+	padding-top : 0px;
+	text-decoration : underline;
+}
+a.leftnav:hover {
+ background : transparent;
+	color : #000099;
+	text-decoration : none;
+}
+a.leftnavhead, .leftnavhead, a.leftnavhead:visited {
+	color : #FFFFFF;
+	font : 12px "Trebuchet MS", Verdana, Arial, sans-serif; 
+	line-height : 13px;
+	padding-bottom : 0px;
+	padding-left : 0px;
+	padding-right : 0px;
+	padding-top : 0px;
+	text-decoration : none;
+}
+a.leftnavhead:hover {
+	color : #CCC;
+	text-decoration : none;
+}
+a.hlth, .hlth, a.hlth:visited {
+	color : #000099;
+	font : 12px Arial, sans-serif; 
+	font-weight : bold;
+	line-height : 13px;
+	padding-bottom : 0px;
+	padding-left : 0px;
+	padding-right : 0px;
+	padding-top : 0px;
+	text-decoration : none;
+}
+a.hlth:hover {
+ background : transparent;
+	color : #990000;
+	text-decoration : none;
+}
+/*top navigation links*/
+
+a.topnav, .topnav, a.topnav:visited, td.topnav {
+	background : transparent;
+	color : #000099;
+	font : 10px Verdana, Geneva, Arial, Helvetica, sans-serif;
+	text-decoration : underline;
+}
+
+a.topnav:hover {
+	text-decoration : underline;
+}
+
+body {
+	background-color : #FFFFFF;
+
+}
+
+body, p, div, dl, dt, dd, h1, h2, h3, h4, h5, h6 {
+color : #000000;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	line-height : 16px;
+}
+
+td, th {font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px;
+
+}
+
+dt, dl, dd {font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px; 
+	line-height : normal;}
+
+
+H1  {
+	FONT-FAMILY : Verdana, Geneva, Arial, sans-serif;
+	COLOR : #000000;
+	FONT-SIZE : 12pt;
+	FONT-WEIGHT : bold;
+}
+
+h2{
+	FONT-FAMILY : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color : #000000;
+	font-size : 11pt;
+	font-weight : bold;
+}
+	
+h3{
+	FONT-FAMILY : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color : #000099;
+	font-size : 10pt;
+	font-weight : bold;
+}
+
+h4{
+	FONT-FAMILY : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color : #000;
+	font-size : 10pt;
+	font-weight : bold;
+}
+
+h5{
+	FONT-FAMILY : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color : #000;
+	font-size : 10pt;
+	font-weight : bold;
+	font-style : italic;
+}
+
+h6{
+	FONT-FAMILY : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	color : #000;
+	font-size : 10pt;
+	font-style : italic;
+}
+
+.subhead {font-family: Arial, Helvetica, sans-serif;
+	color : #000;
+	font-size: 12px; 
+	font-style: normal; 
+	font-weight: normal;
+	}
+
+ol li {
+	list-style-type : decimal;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px;
+
+}
+
+ul li  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 12px;
+	list-style-type : disc;
+	MARGIN-BOTTOM : 0px;
+	MARGIN-LEFT : -5px;
+	MARGIN-TOP : -1px;
+	PADDING-LEFT : -5px;
+}
+
+li.portal {list-style-type : square;
+}
+
+
+/*right nav for 3 column pages*/
+
+.whitetext {
+	color : #FFFFFF;
+	font-family : Verdana, Arial, sans-serif;
+	font-weight : bold;
+	FONT-SIZE : 12px;
+}
+
+.rightnav  {
+	font-family : Geneva, Arial, Helvetica, sans-serif;
+	FONT-SIZE : 11px;
+	line-height: 13px;
+	color: #333333;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.rightnavtop  {
+	font-family : Geneva, Arial, Helvetica, sans-serif;
+	FONT-SIZE : 11px;
+	line-height: 13px;
+	color: #333333;
+	margin-top: auto;
+	margin-right: 50px;
+	margin-bottom: auto;
+	margin-left: auto;
+	right: 15px;
+}
+
+ul.rightnav, li.rightnav  {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	FONT-SIZE : 11px;
+	line-height: 13px;
+	padding-top: 1px;
+	padding-bottom: 2px;
+
+}
+
+.rightnavhead {
+	color : #FFFFFF;
+	font-family : Arial, Helvetica, sans-serif;
+	FONT-SIZE : 12px;
+	line-height: 14px;
+	font-weight : bold;
+}
+.rightnavsubhead {
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	FONT-SIZE : 11px;
+	font-weight: bold;
+	line-height: 13px;
+	margin-left: 0px;
+}
+
+
+.seealso {
+	font-family : "Trebuchet MS", Tahoma, Verdana, Arial, sans-serif;
+	FONT-SIZE : 12px;
+	line-height : 13px;
+}
+
+
+
+/*table row selectors*/ 
+
+.trleftnav {
+	background : #FCF8EB;
+	padding-bottom : 0px;
+	padding-left : 0px;
+	padding-right : 0px;
+	padding-top : 0px;
+}
+.trleftnavexpand1 {
+	background : #ECE5DA;
+	padding-bottom : 0px;
+	padding-left : 0px;
+	padding-right : 0px;
+	padding-top : 0px;
+	text-indent : 0px;
+}
+
+
+
+/*search box controls*/
+
+DIV.topsearch A.topsearch {
+FONT-WEIGHT: normal; FONT-SIZE: 10px; COLOR: #fff; FONT-FAMILY: Verdana, Arial, Helvetica, san-serif; 
+}
+DIV.topsearch:link {
+	FONT-WEIGHT: normal; FONT-SIZE: 10px; COLOR: #fff; FONT-FAMILY: Verdana, Arial, Helvetica, san-serif;
+}
+DIV.topsearch:visited {
+	FONT-WEIGHT: normal; FONT-SIZE: 10px; COLOR: #fff; FONT-FAMILY: Verdana, Arial, Helvetica, san-serif;
+}
+INPUT.input {text-align=left; WIDTH: 120px; border: inset 1px #000;
+	background-color: #FFF;}
+
+.breadcrumbs, TD.breadcrumbs {
+	FONT-FAMILY: Verdana, Geneva, Arial, Helvetica, san-serif;
+	FONT-WEIGHT: normal; FONT-SIZE: 10px; line-height: 12px; COLOR: #333366; }
+
+a.breadcrumbs, a.breadcrumbs:link, a.breadcrumbs:visited {
+	COLOR: #333366; }
+
+.header1 {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	color: #009966;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.header1 a:link {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	color: #009966;
+	text-decoration: none;
+}
+
+
+.header1 a:visited {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	color: #009966;
+	text-decoration: none;
+}
+
+.nav_menu {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #006699;
+}
+
+.nav_menu a:link {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #006699;
+}
+
+.nav_menu a:visited {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #006699;
+}
+
+.menu {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+.menu a:link {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFF99;
+}
+
+.menu a:visited {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #FFFF99;
+}
+
+.tableform {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	color: #009966;
+	border: thin solid #009966;
+}
+
+.tableformblack {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	border: thin solid #009966;
+	border-top: thin solid #009966;
+	border-right: thin solid #009966;
+	border-bottom: thin solid #009966;
+	border-left: thin solid #009966;
+}
+
+.tableborder {
+		color: #000000;
+		border: thin solid #999999;
+		left: 50px;
+		border-style: groove;
+}
+
+.maintable {
+	height: 250px;
+	width: auto;
+}
+
+.tableformall  {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin solid #009966;
+	border-right: thin solid #009966;
+	border-bottom: thin solid #009966;
+	border-left: thin solid #009966;
+}
+
+.tableformtop {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin solid #009966;
+	border-right: thin solid #009966;
+	border-bottom: thin none #009966;
+	border-left: thin solid #009966;
+}
+
+.tableformbottom {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin none #009966;
+	border-right: thin solid #009966;
+	border-bottom: thin solid #009966;
+	border-left: thin solid #009966;
+}
+
+.tableformmiddle {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin none #009966;
+	border-right: thin solid #009966;
+	border-bottom: thin none #009966;
+	border-left: thin solid #009966;
+}
+
+.tableformmiddleleft {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin solid #009966;
+	border-right: thin none #009966;
+	border-bottom: thin solid #009966;
+	border-left: thin solid #009966;
+}
+
+.tableformmiddleright {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin solid #009966;
+	border-right: thin solid #009966;
+	border-bottom: thin solid #009966;
+	border-left: thin none #009966;
+}
+
+.tableformtopleft {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin solid #009966;
+	border-right: thin none #009966;
+	border-bottom: thin none #009966;
+	border-left: thin solid #009966;
+}
+
+.tableformtopright {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin solid #009966;
+	border-right: thin solid #009966;
+	border-bottom: thin none #009966;
+	border-left: thin none #009966;
+}
+
+.tableformleftonly {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin none #009966;
+	border-right: thin none #009966;
+	border-bottom: thin none #009966;
+	border-left: thin solid #009966;
+}
+
+.tableformrightonly {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin none #009966;
+	border-right: thin solid #009966;
+	border-bottom: thin none #009966;
+	border-left: thin none #009966;
+}
+
+.tableformbottomleft {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin none #009966;
+	border-right: thin none #009966;
+	border-bottom: thin solid #009966;
+	border-left: thin solid #009966;
+}
+
+.tableformbottomright {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin none #009966;
+	border-right: thin solid #009966;
+	border-bottom: thin solid #009966;
+	border-left: thin none #009966;
+}
+
+.tableformtoponly {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin solid #009966;
+	border-right: thin none #009966;
+	border-bottom: thin none #009966;
+	border-left: thin none #009966;
+}
+
+.tableformbottomonly {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin none #009966;
+	border-right: thin none #009966;
+	border-bottom: thin solid #009966;
+	border-left: thin none #009966;
+}
+
+.tableformnone {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin none #009966;
+	border-right: thin none #009966;
+	border-bottom: thin none #009966;
+	border-left: thin none #009966;
+}
+
+/*use to make shorter source code*/
+.tfnone {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	color: #000000;
+	border-top: thin none #009966;
+	border-right: thin none #009966;
+	border-bottom: thin none #009966;
+	border-left: thin none #009966;
+}
+
+.beta {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #CC3300;
+	font-weight: bold;
+}
+.header2 {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.headerSolexa {
+	color: #0000FF;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.header3 {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.help_text {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+}
+

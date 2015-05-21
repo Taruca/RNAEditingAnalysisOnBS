@@ -1,0 +1,429 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>RNA Editing Detector</title>
+	<link rel="stylesheet" href="globalstyle.css" type="text/css">
+
+	<style>
+		HR {
+			height:2px;
+			width:100%;
+			background:#0000FF;
+			<!-- margin: 0px 150px 0px 150px;  -->
+		}
+	</style>
+
+	<script language="JavaScript" type="text/JavaScript">
+
+		function GetXmlHttpObject() {
+			var xmlHttp=null;
+			try {
+ 				// Firefox, Opera 8.0+, Safari
+ 				xmlHttp=new XMLHttpRequest();
+ 			} catch (e) {
+ 				// Internet Explorer
+ 				try
+  				{
+  					xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+  				} catch (e) {
+  					xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+  				}
+ 			}
+			return xmlHttp;
+		}
+
+		function submitRNAForm() {
+			xmlHttp1 = GetXmlHttpObject();
+			if (xmlHttp1 == null) {
+				alert ("Browser does not support HTTP Request");
+				return;
+			}
+			var radioName = document.getElementsByName('rnaFileFormat');
+			var vcfFormat = null;
+			for (var i = 0; i < radioName.length; i++) {
+				if (radioName[i].checked) {
+					vcfFormat = radioName[i].value;
+				}
+			}
+//			alert (vcfFormat)
+			var url;
+			if (vcfFormat == "RNAVcf") {
+				url = "../loadtable/loadRNAVcfTable.php";
+			} else {
+				alert ("Please select RNA vcf file.");
+				return;
+			}
+			xmlHttp1.onreadystatechange=stateChangedLoadRNAVcf;
+			xmlHttp1.open("GET",url,true);
+			xmlHttp1.send(null);
+		}
+
+		function stateChangedLoadRNAVcf() { 
+			if (xmlHttp1.readyState==4 || xmlHttp1.readyState=="complete") { 
+ 				alert ("RNA vcf file has been loaded completely.");
+ 			} 
+		}
+
+		function submitDNAForm() {
+			xmlHttp3 = GetXmlHttpObject();
+			if (xmlHttp3 == null) {
+				alert ("Browser does not support HTTP Request");
+				return;
+			}
+			var radioName = document.getElementsByName('dnaFileFormat');
+			var vcfFormat = null;
+			for (var i = 0; i < radioName.length; i++) {
+				if (radioName[i].checked) {
+					vcfFormat = radioName[i].value;
+				}
+			}
+//			alert (vcfFormat)
+			var url;
+			if (vcfFormat == "DNAVcf") {
+				url = "../loadtable/loadDNAVcfTable.php";
+			} else {
+				alert ("Please select DNA vcf file.");
+				return;
+			}
+			xmlHttp3.onreadystatechange=stateChangedLoadDNAVcf;
+			xmlHttp3.open("GET",url,true);
+			xmlHttp3.send(null);
+		}
+
+		function stateChangedLoadDNAVcf() { 
+			if (xmlHttp3.readyState==4 || xmlHttp3.readyState=="complete") { 
+ 				alert ("DNA vcf file has been loaded completely.");
+ 			} 
+		}
+
+		function starExecuteFilters() {
+			xmlHttp2 = GetXmlHttpObject();
+			if (xmlHttp2 == null) {
+				alert ("Browser does not support HTTP Request");
+				return;
+			}
+
+			var et;
+			var editingType = document.getElementsByName('editingType');
+			for (var i = 0; i < editingType.length; i++) {
+				if (editingType[i].checked) {
+					et = editingType[i].value;
+				}
+			}
+
+			var quality = document.getElementsByName('q');
+			var q = quality[0].value;
+			var depthofCov = document.getElementsByName('dp');
+			var dp = depthofCov[0].value;
+			var sjLenth = document.getElementsByName('sjLenth');
+			var sjl = sjLenth[0].value;
+			var rnaRadio = document.getElementsByName('rnaRadio');
+			var rd = rnaRadio[0].value;
+
+//			alert(et)
+			var url = "../executeFilters/executeFilters.php" + "?et=" + et + "&q=" + q + "&dp=" + dp +"&sjl=" + sjl +"&rd=" +rd;
+//			alert(url);
+			xmlHttp2.onreadystatechange=executeEnd;
+			xmlHttp2.open("GET",url,true);
+			xmlHttp2.send(null);
+		}
+
+		function executeEnd() {
+			if (xmlHttp2.readyState==4 || xmlHttp2.readyState=="complete") { 
+				var str ="All filters have been performed completely.\n";
+ 				alert(str);
+ 			} 
+		}
+
+		function showResults() {
+			xmlHttp4 = GetXmlHttpObject();
+			if (xmlHttp4 == null) {
+				alert ("Browser does not support HTTP Request");
+				return;
+			}
+
+			var url	= "../database/ShowResults.php";
+			xmlHttp4.onreadystatechange=showEnd;
+			xmlHttp4.open("GET",url,true);
+			xmlHttp4.send(null);
+		}
+
+		function showEnd() {
+			if (xmlHttp4.readyState==4 || xmlHttp4.readyState=="complete") { 
+				var results =xmlHttp4.responseText;
+				var rsarray = results.split("/");
+				var RNASitesNum = rsarray[0];
+				var RNAEditingSitesNum = rsarray[1];
+				document.getElementById("RNASitesAmount").innerHTML = RNASitesNum;
+				document.getElementById("RNAEditingSitesAmount").innerHTML = RNAEditingSitesNum;
+				showTable();
+ 			} 
+		}
+
+		function showTable() {
+			xmlHttp5 = GetXmlHttpObject();
+			if (xmlHttp5 == null) {
+				alert ("Browser does not support HTTP Request");
+				return;
+			}
+			var url = "../database/ShowTable.php";
+			xmlHttp5.onreadystatechange=tableEnd;
+			xmlHttp5.open("GET",url,true);
+			xmlHttp5.send(null);
+		}
+
+		function tableEnd() {
+			if (xmlHttp5.readyState==4 || xmlHttp5.readyState=="complete") { 
+				var table = xmlHttp5.responseText;
+				document.getElementById("txtHint").innerHTML = table;
+			}
+		}
+
+/*
+		function checkForIncorrectInput(form) {
+			var returnVal = true;
+			var fileEntry = form.VCFFile.value;
+			if (isBlank(fileEntry)) {
+				alert( 'Please input a vcf file.' );
+				returnVal = false;
+			}
+
+			return returnVal;
+		}
+
+		function isBlank(sText) {
+			var isBlank=false;
+			if (sText == "") {
+				isBlank = true;
+			}
+			return isBlank;
+		}
+*/
+
+	</script>
+</head>
+
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" >
+	<!-- title -->
+	<table bgcolor="#fcf8eb" border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody>
+		<tr>
+			<td rowspan="2" valign="bottom">
+				<table width="100%">
+					<tr>
+						<td class="header1" width="100%" align="center"><a href="index.html">RNA Editing Detector</a></td>
+					</tr>
+				</table>
+				<table valign="BOTTOM" style="background-repeat: repeat;" background="images/aashade2.gif" border="0" cellpadding="0" cellspacing="0" hspace="0" vspace="0" width="100%">
+					<tbody>
+						<tr valign="top">
+							<td valign="top" width="100%"><img src="images/spacer_002.gif" alt=" " border="0" height="3" width="475"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+			<td colspan="2" height="10" valign="middle" width="100%"></td>
+		</tr>
+		<tr height="3">
+			<td  colspan="2"  bgcolor="#009966">
+				<table background="images/tab_main_spacer.gif" align="right" border="0" cellpadding="0" cellspacing="0" hspace="0" vspace="0" width="100%">
+					<tbody>
+						<tr valign="top">
+							<td style="background-repeat: no-repeat;" align="center" background="images/tab_main2.gif" height="35" valign="bottom" width="100%">
+								<table class="menu" align="right">
+									<tr>
+										<td align="right" class="menu">Made by Ziyang Liu, Directed by Yongmei Sun</a></td>
+										<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<tr valign="top">
+			<td colspan="2" align="left" bgcolor="#009966" valign="middle"><img src="images/spacer_002.gif" border="0" height="9" width="100"></td>
+			<td width="137" class="rightnav" padding: 5px; bgcolor="#009966" align="right">&nbsp;&nbsp;</td>
+		</tr>
+		</tbody>
+	</table>
+
+	<table background="images/aashade1.gif" border="0" cellpadding="0" cellspacing="0" hspace="0" vspace="0" width="100%">
+		<tbody>
+		<tr valign="top">
+			<td valign="top"><img src="images/spacer_002.gif" alt=" " border="0" height="3" width="4"></td>
+		</tr>
+		</tbody>
+	</table>
+<!-- lefmenu -->
+	<table summary="layout table" border="0" cellpadding="0" cellspacing="0" vspace="0" width="100%">
+		<tbody>
+		<tr>
+			<td>
+				<table summary="layout table" border="0" cellpadding="0" cellspacing="0" width="100%">
+					<tr valign="top">
+						<td bgcolor="#fcf8eb" width="160">
+							<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+							<html>
+							<head></head>
+							<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+								<table summary="layout table" bgcolor="#fcf8eb" border="0" cellpadding="0" cellspacing="0" width="180" class="nav_menu">
+									<tbody>
+									<tr>
+										<td bgcolor="#fcf8eb"><img src="images/spacer.gif" border="0" height="1" width="2"></td>
+										<td width="158"><img src="images/spacer.gif" border="0" height="1" width="158"> </td>
+									</tr>
+									<tr>
+										<td colspan="2" width="212"><img src="images/spacer.gif" border="0" height="10" width="5"><a href="http://zh.wikipedia.org/wiki/RNA编辑">About RNA Editing</a></td>
+									</tr>
+									<tr>
+										<td colspan="2" width="212"><img src="images/spacer.gif" border="0" height="10" width="5"></td>
+									</tr>
+									<tr>
+										<td colspan="2" width="212"><img src="images/spacer.gif" border="0" height="10" width="5"><a href=" ">Download Example Input Files</a></td>
+									</tr>
+									<tr>
+										<td colspan="2" width="212"><img src="images/spacer.gif" border="0" height="10" width="5"></td>
+									</tr>
+									<tr>
+										<td colspan="2" width="212"><img src="images/spacer.gif" border="0" height="10" width="5"><a href="mailto:395158242@qq.com?subject=RNAEditing Question">Contact Us </a></td>
+									</tr>
+									<tr>
+										<td colspan="2" width="212"><img src="images/spacer.gif" border="0" height="10" width="5"></td>
+									</tr>
+									</tbody>
+								</table>
+							</body>
+							</html>
+						</td>
+<!-- medium meum -->
+						<td background="images/vert_rule_left.gif" width="1"><img src="images/spacer.gif" border="0" height="10" width="2"></td>
+						<td colspan="2">
+							<table summary="layout table" border="0" cellpadding="4" cellspacing="0" width="100%">
+								<tbody><tr valign="top">
+									<td width="684" height="400">
+										<br>
+										<center><table cellspacing=0 cellpadding=5 border="0">
+											<tr>
+												<td class="tableformtop" colspan="2" width="500"><CENTER><h2>Input VCF File for RNA Editing</h2></center></td>
+											</tr>
+											<tr>
+												 <TD class="tableformmiddle" colspan="2" width="500"><CENTER><INPUT TYPE="File" NAME="RNAVcfFile" ID="RNAFileID"></CENTER></TD>
+											</tr>
+											<!-- input file format, table of radio buttons -->
+											<tr>
+												<td class="tableformmiddle" colspan="2">
+													<center><table CELLSPACING=0 RULES=none CELLPADDING=2 CLASS="tableform">
+															<tr>
+																<td CLASS="tableformbottomonly" ALIGN="center" width="250">input RNA vcf file(<span style="color:red">required</span>)</td>
+															</tr>
+															<tr>
+																<td CLASS="tableformnone"><input type="radio" name="rnaFileFormat" value="RNAVcf" checked="RNAVcf">RNAVcf <span style="color:red">*</span></td>
+															</tr>
+														</table></center>
+												</td>
+											</tr>
+											<tr>
+												<td class="tableformbottom"  colspan="2"><CENTER><INPUT TYPE="IMAGE" SRC="images/submit.gif" NAME="RNAVcfFileSubmit" VALUE="Display RNAVcf" onclick="submitRNAForm()"></CENTER></td>
+											</tr>
+											
+											<tr><td class="tableformmiddle" colspan="2" width="500">&nbsp;&nbsp;</td></tr>
+											<tr>
+												 <TD class="tableformmiddle" colspan="2" width="500"><CENTER><INPUT TYPE="File" NAME="DNAVcfFile" ID="DNAFileID"></CENTER></TD>
+											</tr>
+											<tr>
+												<td class="tableformmiddle" colspan="2">
+													<center><table CELLSPACING=0 RULES=none CELLPADDING=2 CLASS="tableform">
+														<tr>
+															<td CLASS="tableformbottomonly" ALIGN="center" width="250">input DNA vcf file(<span style="color:red">optional</span>)</td>
+														</tr>
+														<tr>
+															<td CLASS="tableformnone"><input type="radio" name="dnaFileFormat" value="DNAVcf" >DNAVcf</td>
+														</tr>
+													</table></center>
+												</td>
+											</tr>
+											<tr>
+												<td class="tableformbottom"  colspan="2"><CENTER><INPUT TYPE="IMAGE" SRC="images/submit.gif" NAME="DNAVcfFileSubmit" VALUE="Display DNAVcf" onclick="submitDNAForm()"></CENTER></td>
+											</tr>
+
+											<tr><td height="10" class="tableformnone" colspan="2"></td></tr>
+											<!--or-->
+											<tr><td class="tableformnone" colspan="2"></td></tr> 
+											<tr><td height="7" class="tableformnone" colspan="2"></td></tr>
+											<tr><td class="tableformtop" colspan="2">
+												<CENTER><h2>Execute RNA Editing Filters</h2></CENTER>
+											</td></tr>
+											<tr><td class="tableformmiddle" colspan="2">
+												<center><table CELLSPACING=0 RULES=none CELLPADDING=2 CLASS="tableform">
+													<tr><td CLASS="tableformbottomonly" ALIGN="center" width="250">choose parameters</td></tr>
+													<tr><td CLASS="tableformnone" colspan="1"><p>Editing Type:</p></td></tr>
+													<tr><td CLASS="tableformnone" colspan="1" ><center><input type="radio" name="editingType" value = "AG" checked="AG">A-to-G</center></td></tr>
+													<tr><td CLASS="tableformnone" colspan="1"><center><input type="radio" name="editingType" value = "TC" >T-to-C</center></td></tr>
+													<tr><td CLASS="tableformnone" colspan="1"><p>Quality(range of 1-255):</p></tr>
+													<tr><td CLASS="tableformnone" ><center><INPUT TYPE="TEXT" NAME="q" VALUE="20" MAXLENGTH = "3" SIZE = "3"></center></td></tr>
+													<tr><td CLASS="tableformnone" colspan="1"><p>Depth of coverage(range of 1-255):</p></td></tr>
+													<tr><td CLASS="tableformnone" ><center><INPUT TYPE="TEXT" NAME="dp" VALUE="6" MAXLENGTH = "3" SIZE = "3"></center></td></tr>
+													<tr><td CLASS="tableformnone" colspan="1"><p>Splice-junction length(range of 1-99):</p></td></tr>
+													<tr><td CLASS="tableformnone" ><center><INPUT TYPE="TEXT" NAME="sjLenth" VALUE="2" MAXLENGTH = "2" SIZE = "2"></center></td></tr>
+													<tr><td CLASS="tableformnone" colspan="1"><p>The radio of a site whether it's a RNA editing or not:</p></td></tr>
+													<tr><td CLASS="tableformnone" ><center><INPUT TYPE="TEXT" NAME="rnaRadio" VALUE="4.0" MAXLENGTH = "5" SIZE = "5"></center></td></tr>
+												</table></center>
+											</td></tr>
+											<tr>
+												<td class="tableformbottom"  colspan="2"><CENTER><INPUT TYPE="IMAGE" SRC="images/submit.gif" NAME="executeFilters" VALUE="Execute Filters" onclick="starExecuteFilters()"></CENTER></td>
+											</tr>
+											<!-- or -->
+											<tr><td class="tableformnone" colspan="2"></td></tr> 
+											<tr><td height="7" class="tableformnone" colspan="2"></td></tr>
+											<tr><td class="tableformtop" colspan="2">
+												<CENTER><h2>Results</h2></CENTER>
+											</td></tr>
+											<tr><td class="tableformmiddle" colspan="2">
+												<center><table CELLSPACING=0 RULES=none CELLPADDING=2 CLASS="tableform">
+												<tr><td CLASS="tableformbottomonly" ALIGN="center" width="250">detect results</td></tr>
+												<tr><td CLASS="tableformnone" colspan="1"><p>Amount of RNA sites before detecting:</p></tr>
+												<tr><td CLASS="tableformnone" ><center><p><span id="RNASitesAmount"></span></p></center></td></tr>
+												<!-- <INPUT TYPE="TEXT" NAME="RNASitesAmount" VALUE="" MAXLENGTH = "15" SIZE = "15"> -->
+												<tr><td CLASS="tableformnone" colspan="1"><p>Amount of RNA Editing sites after detecting:</p></tr>
+												<tr><td CLASS="tableformnone" ><center><p><span id="RNAEditingSitesAmount"></span></p></center></td></tr>
+												<!--<INPUT TYPE="TEXT" NAME="RNAEditingSitesAmount" VALUE="" MAXLENGTH = "15" SIZE = "15"> -->
+												</table></center>
+											</td></tr>
+											<tr><td class="tableformbottom"  colspan="2"><center><em><u><p>Download result</p></u></em></center></td></tr>
+											<tr>
+												<td class="tableformbottom"  colspan="2"><CENTER><INPUT TYPE="IMAGE" SRC="images/submit.gif" NAME="showResults" VALUE="Show Results" onclick="showResults()"></CENTER></td>
+											</tr>
+											
+											<tr><td class="tableformmiddle" colspan="2">
+											<p>
+												<center>There are some examples of RNA editing sites after detector:</center>
+											</p>
+											<p>
+												<div id="txtHint"></div>
+											</p>
+											</td></tr>
+									</td>
+								</tr></tbody>
+							</table>
+						</td>
+<!--right menu-->
+						<td align="right" background="images/vert_rule_right.gif" width="2" rowspan="2" height="100%"></td>
+						<td width="150" style="margin: 0px; padding: 5px;">
+							<table>
+								<tr><td height="90" width="100%" align="left">RNA Editing Detector was mostly updated by May 18,2015</td></tr>
+							</table>
+						</td>
+
+						
+					</tr>
+				</table>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+
+</body>
+</html>
